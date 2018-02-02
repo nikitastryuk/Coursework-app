@@ -1,0 +1,71 @@
+﻿<Window x:Class="ExamMaterialWpf.RegistrationLoginForm"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExamMaterialWpf"
+        mc:Ignorable="d"
+        FontFamily="Fonts/Roboto-Regular.ttf"
+        Title="MainWindow"  WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Height="365" Width="550">
+    
+    
+    <Window.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/BLACK.jpg" />
+      
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        
+        <StackPanel  Grid.Column="0">
+            <Label Foreground="White" Padding="0" Margin="35,35,35,20"  FontSize="25"  Content="Sign In" />
+            <TextBox Foreground="White" FontSize="15"  Name="tbSignInEmail" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email Adress"  Margin="36,0,35,5"/>
+            <PasswordBox Foreground="White" FontSize="15"  Name="tbSignInPassword"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Password"  Margin="35,0,35,0"/>
+
+            <Button Click="bSignIn_Click" materialDesign:ShadowAssist.ShadowDepth="Depth2" Name="bSignIn" Margin="35,15,35,0" Height="35" FontSize="15" Content="Sign In" VerticalContentAlignment="Center"></Button>
+            <Label Foreground="White" Padding="0" Margin="35,7,35,0"  FontSize="12" Content="Forgot password?" />
+            <Label Foreground="White" Padding="0" Margin="35,20,35,0" HorizontalContentAlignment="Center" FontSize="12" Content="Or sign in with " />
+
+            <DockPanel Margin="15,10,15,35" HorizontalAlignment="Center">
+
+                <Image Margin="5,0,0,0" Height="44" Source="/Images/Tumblr.png"></Image>
+                <Image Margin="5,0,0,0" Height="44" Source="/Images/Deviantart.png"></Image>
+                <Image Margin="5,0,0,0" Height="44" Source="/Images/Twitter.png"></Image>
+                <Image Margin="5,0,0,0" Height="44" Source="/Images/Google+.png"></Image>
+                <Image Margin="5,0,0,0" Height="44" Source="/Images/Instagram.png"></Image>
+            </DockPanel>
+        </StackPanel>
+        <Line HorizontalAlignment="Center" Grid.ColumnSpan="2" Width="1"  Stretch="None" X2="0" X1="0" Y1="20" Y2="345" Stroke="Black" StrokeThickness="1" />
+        <Button Padding="0" Grid.Column="1" Margin="245,0,0,340" Width="20" Height="20"  Name="butClose" Click="butClose_Click"  Style="{StaticResource MaterialDesignFlatButton}">
+            <materialDesign:PackIcon Foreground="White" Width="20" Height="20"  Kind="Close" ></materialDesign:PackIcon>
+        </Button>
+        <StackPanel Grid.Column="1">
+            <Label Foreground="White" Padding="0" Margin="35,35,35,20" FontSize="25" Content="Sign Up" />
+            <TextBox Foreground="White" FontSize="15" Name="tbSignUpFN"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="First Name"  Margin="35,0,35,5"/>
+            <TextBox Foreground="White" FontSize="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Last Name" Name="tbSignUpLN"  Margin="35,0,35,5"/>
+            <TextBox Foreground="White" FontSize="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email Adress" Name="tbSignUpEmail"  Margin="35,0,35,5"/>
+            <TextBox Foreground="White" FontSize="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password" Name="tbSignUpPassword"  Margin="35,0,35,5"/>
+            <Button Click="bSignUp_Click" materialDesign:ShadowAssist.ShadowDepth="Depth2" Name="bSignUp" Margin="35,15,35,0" Height="35" FontSize="15" Content="Sign Up" VerticalContentAlignment="Center"></Button>
+            <TextBlock Foreground="White" Padding="0" Margin="35,7,35,0"  FontSize="10.5">By creating an acount, you agree our <Underline>terms</Underline></TextBlock>
+
+        </StackPanel>
+    </Grid>
+</Window>

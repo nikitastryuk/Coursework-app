@@ -1,0 +1,10 @@
+C:\Users\Tean\Documents\Visual Studio 2017\Projects\ExamMaterialWpf\ConsoleServer\bin\Debug\ConsoleServer.exe.config
+C:\Users\Tean\Documents\Visual Studio 2017\Projects\ExamMaterialWpf\ConsoleServer\bin\Debug\ConsoleServer.exe
+C:\Users\Tean\Documents\Visual Studio 2017\Projects\ExamMaterialWpf\ConsoleServer\bin\Debug\ConsoleServer.pdb
+C:\Users\Tean\Documents\Visual Studio 2017\Projects\ExamMaterialWpf\ConsoleServer\obj\Debug\ConsoleServer.csprojResolveAssemblyReference.cache
+C:\Users\Tean\Documents\Visual Studio 2017\Projects\ExamMaterialWpf\ConsoleServer\obj\Debug\ConsoleServer.exe
+C:\Users\Tean\Documents\Visual Studio 2017\Projects\ExamMaterialWpf\ConsoleServer\obj\Debug\ConsoleServer.pdb
+C:\Users\Tean\Documents\Visual Studio 2017\Projects\ExamMaterialWpf\ConsoleServer\bin\Debug\EntityFramework.dll
+C:\Users\Tean\Documents\Visual Studio 2017\Projects\ExamMaterialWpf\ConsoleServer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tean\Documents\Visual Studio 2017\Projects\ExamMaterialWpf\ConsoleServer\bin\Debug\EntityFramework.xml
+C:\Users\Tean\Documents\Visual Studio 2017\Projects\ExamMaterialWpf\ConsoleServer\bin\Debug\EntityFramework.SqlServer.xml

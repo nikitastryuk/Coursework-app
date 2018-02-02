@@ -1,0 +1,70 @@
+﻿<Window x:Class="ExamMaterialWpf.PlanCard"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExamMaterialWpf"
+        mc:Ignorable="d"
+        Title="PlanCard" WindowStyle="None" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Height="385" Width="230">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <WrapPanel>
+        <materialDesign:Card Name="test" Margin="4 4 0 0" Width="220">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Image Name="planImg" Source="/Images/noimage.jpg"></Image>
+                <Button Name="bPlanImg" Click="bPlanImg_Click"  Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" 
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Margin="0 0 16 -20">
+                    <materialDesign:PackIcon Width="25" Height="25" Kind="FileImage" />
+                </Button>
+                <StackPanel Grid.Row="1" Margin="8 0 8 4" >
+                    <TextBox Name="planName" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="18" materialDesign:HintAssist.Hint="Name your plan!"></TextBox>
+                    <WrapPanel Margin="0,5,0,0">
+                        <TextBlock  FontSize="14">Importance:</TextBlock>
+                        <Viewbox Margin="20,0,0,0" Height="20">
+                            <materialDesign:RatingBar Name="rating" Value="0" Orientation="Horizontal" Foreground="Gold" Margin="0" />
+                        </Viewbox>
+                    </WrapPanel>
+                    
+                    <TextBox Name="notes" TextWrapping="Wrap" VerticalAlignment="Stretch" MinWidth="200" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="Add notes!" Height="70"></TextBox>
+                </StackPanel>
+                
+                <TextBlock Grid.Row="3" Margin="8 4 8 4" Style="{StaticResource MaterialDesignBody2TextBlock}">Date and time:</TextBlock>
+
+                <WrapPanel Margin="8,0,0,0" VerticalAlignment="Center" Grid.Row="4">
+                    <DatePicker Name="date" materialDesign:HintAssist.Hint="Select date" Margin="10,0,0,0" Height="25" Width="80"></DatePicker>
+                    <materialDesign:TimePicker Name="time" Height="25" Margin="25,0,0,0"  Width="80" Is24Hours="True"></materialDesign:TimePicker>
+                </WrapPanel>
+
+
+                <StackPanel Grid.Row="5" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button Click="Button_Click" Style="{StaticResource MaterialDesignFlatButton}"  Margin="8 4 8 8">Reserve</Button>
+                    <Button Name="bCancel" Click="bCancel_Click"  Style="{StaticResource MaterialDesignFlatButton}" Margin="8 4 8 8">Cancel</Button>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+    </WrapPanel>
+</Window>
+
+    
+    

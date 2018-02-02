@@ -1,0 +1,20 @@
+﻿ExamMaterialWpf
+
+
+winexe
+C#
+.cs
+C:\Users\Tean\documents\visual studio 2017\Projects\ExamMaterialWpf\ExamMaterialWpf\obj\Debug\
+ExamMaterialWpf
+none
+false
+DEBUG;TRACE
+C:\Users\Tean\documents\visual studio 2017\Projects\ExamMaterialWpf\ExamMaterialWpf\App.xaml
+1139187328
+
+16-1513584507
+20618571216
+Forms\MainWindow.xaml;Forms\PlanCard.xaml;Forms\RegistrationLoginForm.xaml;UserControls\FriendCardTemplate.xaml;UserControls\GetMessageTemplate.xaml;UserControls\PlanCardTemplate.xaml;UserControls\SendMessageTemplate.xaml;UserControls\ChatUserTemplate.xaml;UserControls\PrivateChatTemplate.xaml;UserControls\ToDoDayTemplate.xaml;UserControls\ToDoItemTemplate.xaml;
+
+False
+

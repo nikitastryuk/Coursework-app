@@ -1,0 +1,669 @@
+﻿<Window x:Class="ExamMaterialWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExamMaterialWpf"
+        xmlns:local1="clr-namespace:ExamMaterialWpf.UserControls"
+        mc:Ignorable="d"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Title="MainWindow" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Height="650" Width="500">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Window.Resources>
+
+    <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton,  Path=IsChecked}">
+
+        <!--//////////////////////
+                 Menu bar
+        ///////////////////////-->
+
+        <materialDesign:DrawerHost.LeftDrawerContent>
+            <StackPanel Background="#343645" Height="650" MinWidth="200">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ToggleButton Grid.Row="0" Width="25" Foreground="White" Margin="10" Height="25" Style="{StaticResource MaterialDesignHamburgerToggleButton}" HorizontalAlignment="Right"  IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                    <StackPanel Grid.Row="1" Margin="0,-25,0,0" >
+                        <Ellipse  Height="128" Width="128" HorizontalAlignment="Center">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource= "{Binding Image}"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="20">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="FirstName" />
+                                    <Binding Path="LastName" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Foreground="#3f51b5" HorizontalAlignment="Center" Text="{Binding Email}" FontSize="15"></TextBlock>
+
+                    </StackPanel>
+                    <StackPanel Margin="0,40,0,0" Grid.Row="2">
+
+                        <Button BorderThickness="0" Style="{StaticResource MaterialDesignFlatButton}" Name="bMain" Click="bMain_Click" Width="200" Height="60">
+                            <WrapPanel HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Foreground="White" Margin="-20,0,0,0" Width="40" Height="40"  Kind="Home" ></materialDesign:PackIcon>
+                                <TextBlock Margin="7,0,0,0" Foreground="White"  VerticalAlignment="Center" FontSize="18">Main Page</TextBlock>
+                            </WrapPanel>
+                        </Button>
+
+                        <Button Name="bSettings" Click="bSettings_Click" Width="200" Style="{StaticResource MaterialDesignFlatButton}" Height="60">
+                            <WrapPanel HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Margin="-40,0,0,0" Foreground="White" Width="40" Height="40"  Kind="Settings" ></materialDesign:PackIcon>
+                                <TextBlock Margin="7,0,0,0" Foreground="White" VerticalAlignment="Center" FontSize="18">Settings</TextBlock>
+                            </WrapPanel>
+                        </Button>
+
+                        <Button Name="bFaq" Click="bFaq_Click" Width="200" Style="{StaticResource MaterialDesignFlatButton}" Height="60">
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon Margin="-71,0,0,0" Foreground="White"  Width="40" Height="40"  Kind="Cube" ></materialDesign:PackIcon>
+                                <TextBlock Foreground="White" Margin="-21,0,0,0"  VerticalAlignment="Center"  FontSize="18">FAQ</TextBlock>
+                            </WrapPanel>
+                        </Button>
+
+                        <Separator  Style="{StaticResource MaterialDesignLightSeparator}"/>
+
+                        <Button Name="bChangeUser" Click="bChangeUser_Click" Width="200" Style="{StaticResource MaterialDesignFlatButton}" Height="60">
+                            <WrapPanel HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Margin="-3,0,0,0" Foreground="White" Width="40" Height="40"  Kind="AccountSwitch" ></materialDesign:PackIcon>
+                                <TextBlock Margin="7,0,0,0" Foreground="White" VerticalAlignment="Center" FontSize="18">Change User</TextBlock>
+                            </WrapPanel>
+                        </Button>
+
+                        <Button Click="butClose_Click" Width="200" Style="{StaticResource MaterialDesignFlatButton}" Height="60">
+                            <WrapPanel HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Margin="-44,0,0,0" Foreground="White" Width="40" Height="40"  Kind="ExitToApp" ></materialDesign:PackIcon>
+                                <TextBlock Margin="7,0,0,0" Foreground="White" VerticalAlignment="Center" FontSize="18">Log out</TextBlock>
+                            </WrapPanel>
+                        </Button>
+
+                    </StackPanel>
+                    <WrapPanel Margin="0,0,0,10" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Vertical">
+                        <TextBlock FontSize="12" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Foreground="DarkGray" Grid.Row="3">Nikita Stryuk © 2017-2018</TextBlock>
+                        <TextBlock FontSize="12" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Foreground="DarkGray" Grid.Row="3">All rights reserved.</TextBlock>
+                    </WrapPanel>
+                </Grid>
+
+            </StackPanel>
+        </materialDesign:DrawerHost.LeftDrawerContent>
+
+        <!--//////////////////////
+                 Main grid
+        ///////////////////////-->
+
+        <Grid >
+
+            <!--//////////////////////
+                 Friends List page
+            ///////////////////////-->
+            <StackPanel Name="friendsListPage" Visibility="Collapsed" Background="#343645">
+                <StackPanel>
+                    <materialDesign:ColorZone Padding="0" materialDesign:ShadowAssist.ShadowDepth="Depth5" Mode="Dark">
+                        <DockPanel  Width="480" VerticalAlignment="Top" Margin="10">
+                            <ToggleButton HorizontalAlignment="Left"  Width="25" Height="25" Style="{StaticResource MaterialDesignHamburgerToggleButton}" Foreground="White" IsChecked="{Binding ElementName=MenuToggleButton,  Path=IsChecked}"/>
+                            <TextBlock Padding="0"  PreviewMouseLeftButtonDown="ColorZone_PreviewMouseLeftButtonDown" Width="429"></TextBlock>
+                            <Button HorizontalAlignment="Right" Padding="0" Width="25" Height="25"  Click="butClose_Click"  Style="{StaticResource MaterialDesignFlatButton}">
+                                <materialDesign:PackIcon Foreground="White" Width="25" Height="25"  Kind="Close" ></materialDesign:PackIcon>
+                            </Button>
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+                <TextBlock Margin="10" Foreground="White" FontSize="22" HorizontalAlignment="Center">Stay in touch with your friends!</TextBlock>
+                <WrapPanel  Margin="20,0,20,0" Orientation="Horizontal">
+                    <TextBox KeyUp="tbFriendEmail_KeyUp" Foreground="White" FontSize="15"  Name="tbFriendEmail" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="460" materialDesign:HintAssist.Hint="Friend email adress" />
+
+                </WrapPanel>
+
+                <ListView Name="lvFriends" Margin="25,10,16,10" Height="495" HorizontalContentAlignment="Center"  ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Width="440" Orientation="Horizontal"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+
+
+
+                </ListView>
+
+            </StackPanel>
+
+            <!--//////////////////////
+                 Chat page
+            ///////////////////////-->
+
+            <StackPanel Name="chatPage" Visibility="Collapsed"  Background="#343645">
+                <StackPanel>
+                    <materialDesign:ColorZone Padding="0" materialDesign:ShadowAssist.ShadowDepth="Depth5" Mode="Dark">
+                        <DockPanel Width="480" VerticalAlignment="Top" Margin="10">
+                            <ToggleButton HorizontalAlignment="Left"  Width="25" Height="25" Style="{StaticResource MaterialDesignHamburgerToggleButton}" Foreground="White" IsChecked="{Binding ElementName=MenuToggleButton,  Path=IsChecked}"/>
+                            <TextBlock Padding="0"  PreviewMouseLeftButtonDown="ColorZone_PreviewMouseLeftButtonDown" Width="429"></TextBlock>
+                            <Button HorizontalAlignment="Right" Padding="0" Width="25" Height="25"  Click="butClose_Click"  Style="{StaticResource MaterialDesignFlatButton}">
+                                <materialDesign:PackIcon Foreground="White" Width="25" Height="25"  Kind="Close" ></materialDesign:PackIcon>
+                            </Button>
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+
+                <ListBox Name="lbUsers" Margin="8,8,10,8" Height="115" ScrollViewer.HorizontalScrollBarVisibility="Visible" Width="480">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" Width="484" IsItemsHost="True" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListBoxItem_PreviewMouseLeftButtonDown" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+                <TabControl Height="470" Name="chat" Margin="6,0,6,0"  >
+                    <TabControl.Background>
+                        <ImageBrush  AlignmentX="Center" AlignmentY="Center" Stretch="None" ImageSource="/Images/chat.png" />
+                    </TabControl.Background>
+                </TabControl>
+
+
+            </StackPanel>
+
+            <!--//////////////////////
+                 To-do list page
+            ///////////////////////-->
+
+            <StackPanel Name="toDoPage" Visibility="Collapsed"  Background="#343645">
+                <StackPanel>
+                    <materialDesign:ColorZone Padding="0" materialDesign:ShadowAssist.ShadowDepth="Depth5" Mode="Dark">
+                        <DockPanel Width="480" VerticalAlignment="Top" Margin="10">
+                            <ToggleButton HorizontalAlignment="Left"  Width="25" Height="25" Style="{StaticResource MaterialDesignHamburgerToggleButton}" Foreground="White" IsChecked="{Binding ElementName=MenuToggleButton,  Path=IsChecked}"/>
+                            <TextBlock Padding="0"  PreviewMouseLeftButtonDown="ColorZone_PreviewMouseLeftButtonDown" Width="429"></TextBlock>
+                            <Button HorizontalAlignment="Right" Padding="0" Width="25" Height="25"  Click="butClose_Click"  Style="{StaticResource MaterialDesignFlatButton}">
+                                <materialDesign:PackIcon Foreground="White" Width="25" Height="25"  Kind="Close" ></materialDesign:PackIcon>
+                            </Button>
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+
+                </StackPanel>
+                <TextBlock Margin="10" Foreground="White" FontSize="22" HorizontalAlignment="Center">All you need is To-do!</TextBlock>
+                <WrapPanel Margin="15,0,0,0">
+                    <Button Click="bAddToDoDate_Click" Name="bAddToDoDate" Width="100">Add</Button>
+                    <DatePicker Name="tbToDoDate" Foreground="White" materialDesign:HintAssist.Hint="Select date" Margin="10,0,0,0" FontSize="15" Height="30" VerticalContentAlignment="Center" Width="100"></DatePicker>
+                    <TextBox Margin="15,0,0,0" Foreground="White"  FontSize="15" VerticalContentAlignment="Center" Height="30" Name="tbToDoDateName" Style="{StaticResource MaterialDesignTextBox}" Width="130" materialDesign:HintAssist.Hint="Set name" />
+                    <Button Margin="15,0,0,0" Name="bDeleteToDoDate" Click="bDeleteToDoDate_Click"  Width="100">Remove</Button>
+                </WrapPanel>
+                <ListView Name="lvToDo" Margin="15,15,15,10" Height="502" HorizontalContentAlignment="Center"  ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+                </ListView>
+
+
+
+            </StackPanel>
+
+            <!--//////////////////////
+                 FAQ page
+            ///////////////////////-->
+
+            <StackPanel Name="faqPage" Visibility="Collapsed"  Background="#343645">
+
+                <materialDesign:ColorZone Padding="0" materialDesign:ShadowAssist.ShadowDepth="Depth5" Mode="Dark">
+                        <DockPanel Width="480" VerticalAlignment="Top" Margin="10">
+                            <ToggleButton HorizontalAlignment="Left"  Width="25" Height="25" Style="{StaticResource MaterialDesignHamburgerToggleButton}" Foreground="White" IsChecked="{Binding ElementName=MenuToggleButton,  Path=IsChecked}"/>
+                            <TextBlock Padding="0"  PreviewMouseLeftButtonDown="ColorZone_PreviewMouseLeftButtonDown" Width="429"></TextBlock>
+                            <Button HorizontalAlignment="Right" Padding="0" Width="25" Height="25"  Click="butClose_Click"  Style="{StaticResource MaterialDesignFlatButton}">
+                                <materialDesign:PackIcon Foreground="White" Width="25" Height="25"  Kind="Close" ></materialDesign:PackIcon>
+                            </Button>
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+                <TextBlock Margin="10" Foreground="White" FontSize="22" HorizontalAlignment="Center"> Welcome to our Help Center!</TextBlock>
+                <materialDesign:Card  Grid.Row="1" Background="{DynamicResource MaterialDesignBackground}" Margin="10,0,10,0">
+                    <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+                        <StackPanel Height="537">
+
+                            <Expander HorizontalAlignment="Stretch"
+                      Header="What is MyPlanner?">
+                                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="24,8,24,16">
+
+                                    <TextBlock Opacity=".68"
+                               TextWrapping="Wrap"><Run Text="MyPlanner "/><Run Text="is a great place to meet fun new people in your area and around the world. It's packed with exciting users who want to chat, maybe even meet up, and share experiences, interests and friendship. We bring social networking to life by allowing you to chat, make new friends, share photos, maybe even date. You can also tell people about your interests and who you are, and play fun games that let you meet new people. "/></TextBlock>
+                                </StackPanel>
+                            </Expander>
+                            <Expander HorizontalAlignment="Stretch"
+                          Header="How can i change my profile settings?">
+                                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="25,0,25,16">
+                                    <TextBlock Opacity=".68"
+                               TextWrapping="Wrap"><Run Text="Please open your "/><Run Text="&quot;Settings&quot; tab."/><Run Text=" Enter the new "/><Run Text="data and"/><Run Text=" click on '"/><Run Text="Edit"/><Run Text="'"/><Run Text="."/></TextBlock>
+                                </StackPanel>
+                            </Expander>
+                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                            <Expander HorizontalAlignment="Stretch"
+                      Header="How can i contact a customer support?">
+                                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="24,8,24,16">
+
+                                    <TextBlock Opacity=".68" Text="If you have a question you can't find an answer for, or you want to contact us for any other reason, you can get in touch using our feedback form."
+                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Expander>
+                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                            <Expander HorizontalAlignment="Stretch"
+                      Header="How can i sign out?">
+                                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="24,8,24,16">
+
+                                    <TextBlock Opacity=".68"
+                               TextWrapping="Wrap"><Run Text="Simply hover your mouse over your thumbnail image on the left side of your display. Please click on the "/><Run Text="&quot;Sign out&quot;."/></TextBlock>
+                                </StackPanel>
+                            </Expander>
+                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                            <Expander HorizontalAlignment="Stretch"
+                      Header="How can i manage my privacy?">
+                                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="24,8,24,16">
+
+                                    <TextBlock Opacity=".68"
+                               TextWrapping="Wrap" Text="You can manage your privacy via your 'Settings' . Options are available to control who can view your profile, if you want to show online status, if you only want to be shown to people you liked and visit and if you want allow search by email."/>
+                                </StackPanel>
+                            </Expander>
+                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                            <Expander HorizontalAlignment="Stretch"
+                      Header="How can i add pictures to my profile?">
+                                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="24,8,24,16">
+
+                                    <TextBlock Opacity=".68"
+                               TextWrapping="Wrap"><Run Text="To add a photo to your profile simply go to your profile and click on Add Photos  . You can choose whether you want to upload photos from Facebook, Instagram, Google + or if you want to upload them directly from your computer. Please note that the file format has to be either JPG or PNG and the file size limit is 128 MB."/><LineBreak/><Run/><LineBreak/><Run Text="You can now add videos as well! Just import one of your Instagram videos by clicking on Add Videos on your profile page."/></TextBlock>
+                                </StackPanel>
+                            </Expander>
+                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                            <Expander HorizontalAlignment="Stretch"
+                      Header="What is the invisible mode?">
+                                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="24,8,24,16">
+
+                                    <TextBlock Opacity=".68"
+                               TextWrapping="Wrap" Text="Invisible mode is a premium feature that lets you browse Badoo without anyone knowing who you are. You can enable this feature by going to your settings, scrolling down to the 'Invisible mode' section and by activating Super Powers. As soon as it is enabled a grey silhouette with a hat  will appear on your thumbnail photo."/>
+                                </StackPanel>
+                            </Expander>
+
+                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                            <Expander HorizontalAlignment="Stretch"
+                      Header="Can i stop recieving the notifications?">
+                                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="24,8,24,16">
+
+                                    <TextBlock Opacity=".68"
+                               TextWrapping="Wrap" Text="Of course! Click on the cog icon in the top right corner of your profile page to open your settings, and scroll down to Notifications. Turn off any notification for email or browser that you don't want to receive (not including some standard company emails). You can turn them back on at any time."/>
+                                </StackPanel>
+                            </Expander>
+                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                            <Expander HorizontalAlignment="Stretch"
+                      Header="How can i add someont to my friends list?">
+                                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="24,8,24,16">
+
+                                    <TextBlock Opacity=".68"
+                               TextWrapping="Wrap"><Run Text="To add a user to your "/><Run Text="friends "/><Run Text="just"/><Run Text=" open the &quot;Friends list&quot;, enter friend email and click &quot;Add friend&quot;."/><LineBreak/><Run Text="If you have already started a conversation with the user you can go to your 'Messages' section and click on the star icon next to the users's name."/></TextBlock>
+                                </StackPanel>
+                            </Expander>
+                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                            <Expander HorizontalAlignment="Stretch"
+                      Header="How much does it cost?">
+                                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="24,8,24,16">
+
+                                    <TextBlock Opacity=".68"
+                               TextWrapping="Wrap"><Run Text="It "/><Run Text="is completely free to join! This lets you create a profile, upload photos and videos of you, look for new people in your area and chat to new people every day. If you want to get even more from your experience, you can use our premium features to get attention and meet more people. Just click on the features that interest you, such as Rise Up , Get featured  or Super Powers  to see terms and costs."/></TextBlock>
+                                </StackPanel>
+                            </Expander>
+                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                            <Expander HorizontalAlignment="Stretch"
+                      Header="I deleted my profile but i want it back! What to do?">
+                                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="24,8,24,16">
+
+                                    <TextBlock Opacity=".68"
+                               TextWrapping="Wrap"><Run Text="It "/><Run Text="We're happy to have you back! To reactivate your profile, find the confirmation email that we sent you when you deleted your profile and click the link it contains. This link is valid for 30 days from the day you delete your profile. If it's been more than 30 days since you received the confirmation email, simply create a new profile on our Sign up page."/></TextBlock>
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </ScrollViewer>
+                </materialDesign:Card>
+            </StackPanel>
+
+            <!--//////////////////////
+                 Home page
+            ///////////////////////-->
+
+            <Grid Name="mainPage" Visibility="Visible" Background="#343645">
+                <StackPanel>
+                    <materialDesign:ColorZone Padding="0" materialDesign:ShadowAssist.ShadowDepth="Depth5" Mode="Dark">
+                        <DockPanel Width="480" VerticalAlignment="Top" Margin="10">
+                            <ToggleButton HorizontalAlignment="Left"  Width="25" Height="25" Style="{StaticResource MaterialDesignHamburgerToggleButton}" Foreground="White" IsChecked="{Binding ElementName=MenuToggleButton,  Path=IsChecked}"/>
+                            <TextBlock Padding="0"  PreviewMouseLeftButtonDown="ColorZone_PreviewMouseLeftButtonDown" Width="429"></TextBlock>
+                            <Button HorizontalAlignment="Right" Padding="0" Width="25" Height="25"  Click="butClose_Click"  Style="{StaticResource MaterialDesignFlatButton}">
+                                <materialDesign:PackIcon Foreground="White" Width="25" Height="25"  Kind="Close" ></materialDesign:PackIcon>
+                            </Button>
+
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+
+                    <StackPanel Margin="0,20,0,0">
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Button Name="bPlanner" Click="bPlanner_Click" Margin="0,0,10,0" Padding="5"  Style="{StaticResource MaterialDesignFlatButton}" Width="210" Height="280">
+                                <Grid>
+                                    <Image Width="200" Height="280" Source="/Images/1.jpeg"></Image>
+                                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                                        <materialDesign:PackIcon  Width="120" Height="120" Foreground="White" Kind="Bike"></materialDesign:PackIcon>
+                                        <TextBlock HorizontalAlignment="Center" Foreground="White">Planner</TextBlock>
+                                    </WrapPanel>
+                                </Grid>
+
+                            </Button>
+                            <Button Name="bFriensList" Click="bFriensList_Click" Style="{StaticResource MaterialDesignFlatButton}" Width="210" Padding="5" Height="280">
+                                <Grid>
+                                    <Image  Width="200" Height="280" Source="/Images/2.jpeg"></Image>
+                                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                                        <materialDesign:PackIcon  Width="120" Height="120" Foreground="White" Kind="AccountMultipleOutline"></materialDesign:PackIcon>
+                                        <TextBlock HorizontalAlignment="Center" Foreground="White">Friends list</TextBlock>
+                                    </WrapPanel>
+                                </Grid>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Button Name="bChat" Click="bChat_Click" materialDesign:ShadowAssist.ShadowDepth="Depth5" Padding="5" Margin="0,0,10,0"  Style="{StaticResource MaterialDesignFlatButton}" Width="210" Height="280">
+                                <Grid>
+                                    <Image  Width="200" Height="280" Source="/Images/3.jpeg"></Image>
+                                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                                        <materialDesign:PackIcon  Width="120" Height="120" Foreground="White" Kind="Wechat"></materialDesign:PackIcon>
+                                        <TextBlock HorizontalAlignment="Center" Foreground="White">Chat</TextBlock>
+                                    </WrapPanel>
+                                </Grid>
+                            </Button>
+                            <Button Name="bToDo" Click="bToDo_Click"  Style="{StaticResource MaterialDesignFlatButton}" Width="210" Padding="5" Height="280">
+                                <Grid>
+                                    <Image  Width="200" Height="280" Source="/Images/4.jpeg"></Image>
+                                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                                        <materialDesign:PackIcon  Width="120" Height="120" Foreground="White" Kind="Duck"></materialDesign:PackIcon>
+                                        <TextBlock HorizontalAlignment="Center" Foreground="White">To Do</TextBlock>
+                                    </WrapPanel>
+                                </Grid>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!--//////////////////////
+                 Settings page
+            ///////////////////////-->
+
+            <Grid Background="#343645" Visibility="Collapsed" Name="settingsPage">
+                <StackPanel>
+                    <materialDesign:ColorZone Padding="0" materialDesign:ShadowAssist.ShadowDepth="Depth5" Mode="Dark">
+                        <DockPanel Width="480" VerticalAlignment="Top" Margin="10">
+                            <ToggleButton HorizontalAlignment="Left"  Width="25" Height="25" Style="{StaticResource MaterialDesignHamburgerToggleButton}" Foreground="White" IsChecked="{Binding ElementName=MenuToggleButton,  Path=IsChecked}"/>
+                            <TextBlock Padding="0"  PreviewMouseLeftButtonDown="ColorZone_PreviewMouseLeftButtonDown" Width="429"></TextBlock>
+                            <Button HorizontalAlignment="Right" Padding="0" Width="25" Height="25"  Click="butClose_Click"  Style="{StaticResource MaterialDesignFlatButton}">
+                                <materialDesign:PackIcon Foreground="White" Width="25" Height="25"  Kind="Close" ></materialDesign:PackIcon>
+                            </Button>
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20 25 20 0">
+                        <materialDesign:Flipper  Style="{StaticResource MaterialDesignCardFlipper}">
+                            <materialDesign:Flipper.FrontContent>
+                                <Grid Background="#343645" Height="256" Width="200">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <materialDesign:ColorZone  Grid.Row="0" Mode="PrimaryMid" Padding="10">
+                                        <TextBlock Margin="8 0 0 0" Foreground="White"  FontSize="20" VerticalAlignment="Center">Profile Settings</TextBlock>
+                                    </materialDesign:ColorZone>
+                                    <StackPanel Margin="0,10,0,0" Grid.Row="1" >
+                                        <WrapPanel  Margin="15,10,0,0">
+                                            <materialDesign:PackIcon Margin="0,0,10,0" Foreground="White" VerticalAlignment="Center" Width="25" Height="25"   Kind="AccountStar" ></materialDesign:PackIcon>
+                                            <TextBlock  HorizontalAlignment="Left" FontSize="15" Foreground="White" Text="{Binding FirstName}" ></TextBlock>
+                                        </WrapPanel>
+
+                                        <WrapPanel  Margin="15,10,0,0">
+                                            <materialDesign:PackIcon Margin="0,0,10,0" Foreground="White" VerticalAlignment="Center" Width="25" Height="25"   Kind="AccountStarVariant" ></materialDesign:PackIcon>
+                                            <TextBlock HorizontalAlignment="Left" FontSize="15" Foreground="White" Text="{Binding LastName}" ></TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel  Margin="15,10,0,0">
+                                            <materialDesign:PackIcon Margin="0,0,10,0" Foreground="White" VerticalAlignment="Center" Width="25" Height="25"   Kind="Email" ></materialDesign:PackIcon>
+                                            <TextBlock HorizontalAlignment="Left" Foreground="White"  FontSize="15" Text="{Binding Email}"></TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel  Margin="15,10,0,0">
+                                            <materialDesign:PackIcon Margin="0,0,10,0" Foreground="White"  VerticalAlignment="Center" Width="25" Height="25"   Kind="Key" ></materialDesign:PackIcon>
+                                            <TextBlock HorizontalAlignment="Left" Foreground="White"  FontSize="15" Text="{Binding Password}" ></TextBlock>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                    <Button Grid.Row="2" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 4 0 0">EDIT</Button>
+
+                                </Grid>
+                            </materialDesign:Flipper.FrontContent>
+                            <materialDesign:Flipper.BackContent>
+                                <Grid  Background="#343645" Height="256" Width="200">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <materialDesign:ColorZone Mode="PrimaryMid" Padding="10">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                HorizontalAlignment="Left">
+                                                <materialDesign:PackIcon Kind="ArrowLeft" HorizontalAlignment="Right" />
+                                            </Button>
+                                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">EDIT USER</TextBlock>
+                                        </StackPanel>
+                                    </materialDesign:ColorZone>
+                                    <Grid Grid.Row="1" Margin="0 6 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"
+                          Width="172">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBox Name="tbFN" materialDesign:HintAssist.Hint="First name" FontSize="14" Foreground="White" materialDesign:HintAssist.IsFloating="True"
+                                 Margin="0 10 0 0" Text="{Binding FirstName, Mode=OneTime}"></TextBox>
+                                        <TextBox Grid.Row="1" materialDesign:HintAssist.Hint="Last name" Foreground="White"  FontSize="14" materialDesign:HintAssist.IsFloating="True"
+                                 Margin="0 10 0 0" Name="tbLN" Text="{Binding LastName, Mode=OneTime}"></TextBox>
+                                        <TextBox Grid.Row="2" materialDesign:HintAssist.Hint="New password" Foreground="White"  FontSize="14" materialDesign:HintAssist.IsFloating="True"
+                                 Margin="0 10 0 0" Name="tbPassword" Text="{Binding Password, Mode=OneTime}"></TextBox>
+                                        <Button Name="bProfieSettings" Click="bProfieSettings_Click" Grid.Row="3" Style="{StaticResource MaterialDesignFlatButton}" FontSize="14" Margin="0 10 0 0">Accept changes</Button>
+                                    </Grid>
+                                </Grid>
+                            </materialDesign:Flipper.BackContent>
+                        </materialDesign:Flipper>
+                        <StackPanel>
+                            <Image Height="200" Margin="20, 3,0,0" VerticalAlignment="Top" Width="200" Stretch="Fill" Source="{Binding Image}"/>
+                            <Button Click="butSelectImage_Click" Width="200" Margin="20,15,0,0" >Change profile image</Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <Separator Margin="60,0,60,0" Style="{StaticResource MaterialDesignLightSeparator}"/>
+                    <StackPanel Orientation="Horizontal" Margin="40 10 20 0">
+                        <materialDesign:Flipper  Style="{StaticResource MaterialDesignCardFlipper}">
+                            <materialDesign:Flipper.FrontContent>
+                                <Grid Background="#343645" Height="256" Width="200">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <materialDesign:ColorZone  Grid.Row="0" Mode="PrimaryMid" Padding="10">
+                                        <TextBlock Margin="8 0 0 0" Foreground="White"  FontSize="20" VerticalAlignment="Center">Social media</TextBlock>
+                                    </materialDesign:ColorZone>
+                                    <StackPanel Margin="0,10,0,0" Grid.Row="1" >
+                                        <WrapPanel  Margin="15,10,0,0">
+                                            <materialDesign:PackIcon Margin="0,0,10,0" Foreground="White" VerticalAlignment="Center" Width="25" Height="25"   Kind="Facebook" ></materialDesign:PackIcon>
+                                            <TextBlock HorizontalAlignment="Left" FontSize="15" Foreground="White" Text="{Binding Facebook}" ></TextBlock>
+                                        </WrapPanel>
+
+                                        <WrapPanel  Margin="15,10,0,0">
+                                            <materialDesign:PackIcon Margin="0,0,10,0" Foreground="White" VerticalAlignment="Center" Width="25" Height="25"   Kind="Vk" ></materialDesign:PackIcon>
+                                            <TextBlock HorizontalAlignment="Left" FontSize="15" Foreground="White" Text="{Binding Vk}" ></TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel  Margin="15,10,0,0">
+                                            <materialDesign:PackIcon Margin="0,0,10,0" Foreground="White" VerticalAlignment="Center" Width="25" Height="25"   Kind="Twitter" ></materialDesign:PackIcon>
+                                            <TextBlock HorizontalAlignment="Left" Foreground="White"  FontSize="15" Text="{Binding Twitter}" ></TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel  Margin="15,10,0,0">
+                                            <materialDesign:PackIcon Margin="0,0,10,0" Foreground="White"  VerticalAlignment="Center" Width="25" Height="25"   Kind="GithubBox" ></materialDesign:PackIcon>
+                                            <TextBlock HorizontalAlignment="Left" Foreground="White"  FontSize="15" Text="{Binding Github}" ></TextBlock>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                    <Button Grid.Row="2" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 4 0 0">EDIT</Button>
+
+                                </Grid>
+                            </materialDesign:Flipper.FrontContent>
+                            <materialDesign:Flipper.BackContent>
+                                <Grid  Background="#343645" Height="256" Width="200">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <materialDesign:ColorZone Mode="PrimaryMid" Padding="10">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                HorizontalAlignment="Left">
+                                                <materialDesign:PackIcon Kind="ArrowLeft" HorizontalAlignment="Right" />
+                                            </Button>
+                                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">EDIT MEDIA</TextBlock>
+                                        </StackPanel>
+                                    </materialDesign:ColorZone>
+                                    <Grid Grid.Row="1" Margin="0 6 0 0" HorizontalAlignment="Center" VerticalAlignment="Top"
+                          Width="172">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBox Name="tbFacebook" materialDesign:HintAssist.Hint="Facebook" FontSize="14" Foreground="White" materialDesign:HintAssist.IsFloating="True"
+                                 Margin="0 10 0 0"  Text="{Binding Facebook, Mode=OneTime}"></TextBox>
+                                        <TextBox Name="tbVk" Grid.Row="1" materialDesign:HintAssist.Hint="Vk" Foreground="White"  FontSize="14" materialDesign:HintAssist.IsFloating="True"
+                                 Margin="0 10 0 0"  Text="{Binding Vk, Mode=OneTime}"></TextBox>
+                                        <TextBox Name="tbTwitter" Grid.Row="2" materialDesign:HintAssist.Hint="Twitter" Foreground="White"  FontSize="14" materialDesign:HintAssist.IsFloating="True"
+                                 Margin="0 10 0 0"  Text="{Binding Twitter, Mode=OneTime}"></TextBox>
+                                        <Button Name="bProfileSocial" Click="bProfileSocial_Click" Grid.Row="4" Style="{StaticResource MaterialDesignFlatButton}"  FontSize="14" Margin="0 10 0 0">Accept changes</Button>
+                                    </Grid>
+                                </Grid>
+                            </materialDesign:Flipper.BackContent>
+                        </materialDesign:Flipper>
+
+                        <materialDesign:Flipper Margin="21,0,0,0" Style="{StaticResource MaterialDesignCardFlipper}">
+                            <materialDesign:Flipper.FrontContent>
+                                <Grid Background="#343645" Height="256" Width="200">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <materialDesign:ColorZone  Grid.Row="0" Mode="PrimaryMid" Padding="10">
+                                        <TextBlock Margin="8 0 0 0" Foreground="White"  FontSize="20" VerticalAlignment="Center"><Run Text="Other"/></TextBlock>
+                                    </materialDesign:ColorZone>
+                                    <StackPanel Width="200" Grid.Row="1">
+                                        <StackPanel Margin="20 20 0 0" Orientation="Horizontal" >
+                                            <TextBlock FontSize="15" Foreground="White" VerticalAlignment="Center"><Run Text="Notifications"/></TextBlock>
+                                            <ToggleButton HorizontalAlignment="Right" Margin="30 0 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="20 15 0 0" Orientation="Horizontal" >
+                                            <TextBlock FontSize="15" Foreground="White" VerticalAlignment="Center"><Run Text="Alerts"/></TextBlock>
+                                            <ToggleButton Margin="76 0 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="20 15 0 0" Orientation="Horizontal" >
+                                            <TextBlock FontSize="15" Foreground="White" VerticalAlignment="Center"><Run Text="Invisible mode"/></TextBlock>
+                                            <ToggleButton Margin="18 0 0 0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </materialDesign:Flipper.FrontContent>
+                        </materialDesign:Flipper>
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+
+            <!--//////////////////////
+                 Planner page
+            ///////////////////////-->
+
+            <StackPanel Background="#343645" Visibility="Collapsed" Name="plannerPage">
+                <StackPanel>
+                    <materialDesign:ColorZone Padding="0" materialDesign:ShadowAssist.ShadowDepth="Depth5" Mode="Dark">
+                        <DockPanel Width="480" VerticalAlignment="Top" Margin="10">
+                            <ToggleButton Name="MenuToggleButton"  HorizontalAlignment="Left"  Width="25" Height="25" Style="{StaticResource MaterialDesignHamburgerToggleButton}" Foreground="White" IsChecked="False"/>
+                            <TextBlock Padding="0"  PreviewMouseLeftButtonDown="ColorZone_PreviewMouseLeftButtonDown" Width="429"></TextBlock>
+                            <Button  HorizontalAlignment="Right" Padding="0" Width="25" Height="25"  Click="butClose_Click"  Style="{StaticResource MaterialDesignFlatButton}">
+                                <materialDesign:PackIcon Foreground="White" Width="25" Height="25"  Kind="Close" ></materialDesign:PackIcon>
+                            </Button>
+
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+
+                <TextBlock Margin="10" Foreground="White" FontSize="22" HorizontalAlignment="Center">Thoroughly planned… Remembered always!</TextBlock>
+
+                <StackPanel HorizontalAlignment="Center" Margin="0,10,0,10" Orientation="Horizontal">
+                    <Button Name="butAdd" Click="Button_Click" Margin="0,0,5,0" Style="{StaticResource MaterialDesignFloatingActionMiniButton}">
+                        <materialDesign:PackIcon Kind="Plus" Height="25" Width="25" />
+                    </Button>
+                    <Button Name="bDel" Click="bDel_Click" Margin="0,0,5,0" Style="{StaticResource MaterialDesignFloatingActionMiniButton}">
+                        <materialDesign:PackIcon Kind="Delete" Height="25" Width="25" />
+                    </Button>
+                </StackPanel>
+
+                <ListView Height="490" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible" Name="lb">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Width="472" Orientation="Horizontal"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+
+
+            </StackPanel>
+
+        </Grid>
+
+    </materialDesign:DrawerHost>
+</Window>
